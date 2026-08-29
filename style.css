@@ -1,0 +1,995 @@
+:root {
+    --cream: #fffdf1;
+    --page: #f5efe6;
+    --page-dark: #e8ddd0;
+    --column: #e9e5e1;
+    --blue: #2d5366;
+    --red: #d83f2e;
+    --text: #2c2c2c;
+    --muted: #777;
+    --footer: #90a9c3;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "DM Sans", sans-serif;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--page),
+            var(--page-dark)
+        );
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    min-height: 500px;
+
+    display: flex;
+    align-items: flex-start;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.35)
+        ),
+        url("https://wallpapercave.com/wp/wp2244011.jpg")
+        center 65% / cover no-repeat;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.08);
+
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 15px;
+}
+
+.hero h1 {
+    margin: 0;
+
+    color: var(--cream);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(
+        70px,
+        15vw,
+        216px
+    );
+
+    font-weight: 700;
+
+    line-height: 0.75;
+
+    letter-spacing: -5px;
+
+    user-select: none;
+}
+
+.hero p {
+    margin: 25px 0 0 15px;
+
+    color: var(--cream);
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 27px;
+
+    font-style: italic;
+}
+
+
+/* =========================
+   BOARD
+========================= */
+
+.board-section {
+    width: 100%;
+
+    padding: 60px;
+
+    background: var(--cream);
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tabs {
+    display: flex;
+
+    width: 280px;
+
+    padding: 4px;
+
+    background: var(--column);
+
+    border-radius: 50px;
+}
+
+.tab {
+    flex: 1;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: var(--blue);
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tab:hover {
+    transform: translateY(-1px);
+}
+
+.tab.active {
+    background: var(--cream);
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-left: auto;
+}
+
+.btn {
+    border: none;
+
+    border-radius: 50px;
+
+    padding: 10px 20px;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.primary {
+    background: var(--blue);
+}
+
+.danger {
+    background: var(--red);
+}
+
+
+/* =========================
+   RESET CONFIRMATION
+========================= */
+
+.reset-confirm {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    color: #666;
+}
+
+.reset-confirm button {
+    border: none;
+
+    padding: 7px 15px;
+
+    border-radius: 50px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.reset-confirm .yes {
+    background: var(--red);
+
+    color: white;
+}
+
+.reset-confirm .cancel {
+    background: #ddd;
+
+    color: #555;
+}
+
+
+/* =========================
+   COLUMNS
+========================= */
+
+.columns {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.column {
+    min-height: 380px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 16px;
+
+    border-radius: 15px;
+
+    background: var(--column);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.column-body {
+    flex: 1;
+
+    min-height: 200px;
+
+    overflow: hidden;
+}
+
+.column-body.collapsed {
+    display: none;
+}
+
+
+/* =========================
+   COLUMN HEADER
+========================= */
+
+.column-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.column-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 16px;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+}
+
+.column-count {
+    margin-left: auto;
+
+    padding: 4px 9px;
+
+    border-radius: 50px;
+
+    background: var(--cream);
+
+    color: #6b6156;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.eye {
+    border: none;
+
+    padding: 2px;
+
+    background: transparent;
+
+    color: #888;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   STATUS DOTS
+========================= */
+
+.status {
+    width: 14px;
+    height: 14px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.not-started {
+    background: #e85d4a;
+}
+
+.in-progress {
+    background: #e8b84a;
+}
+
+.done {
+    background: #4a9e8e;
+}
+
+
+/* =========================
+   TASK LIST
+========================= */
+
+.task-list {
+    min-height: 100px;
+
+    padding-bottom: 5px;
+
+    border-radius: 15px;
+
+    transition:
+        background 0.2s ease;
+}
+
+.task-list.drag-over {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================
+   EMPTY DROP
+========================= */
+
+.empty-drop {
+    min-height: 120px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 2px dashed #c9c1b6;
+
+    border-radius: 15px;
+
+    color: #aaa;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+/* =========================
+   TASK CARD
+========================= */
+
+.task {
+    position: relative;
+
+    min-height: 120px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 14px;
+
+    margin-bottom: 12px;
+
+    border-radius: 15px;
+
+    background: var(--cream);
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.06);
+
+    cursor: grab;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.task:hover {
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.09);
+
+    transform: translateY(-1px);
+}
+
+.task:active {
+    cursor: grabbing;
+}
+
+.task.dragging {
+    opacity: 0.5;
+
+    transform: scale(1.02);
+}
+
+
+/* =========================
+   TASK TOP
+========================= */
+
+.task-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    flex: 1;
+}
+
+.task-title {
+    flex: 1;
+
+    color: #000;
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    word-break: break-word;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================
+   TASK BUTTONS
+========================= */
+
+.task-buttons {
+    display: flex;
+
+    gap: 3px;
+
+    flex-shrink: 0;
+}
+
+.task-buttons button {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: #999;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+}
+
+.task-buttons button:hover {
+    background: #eee;
+
+    color: var(--blue);
+}
+
+.task-buttons .delete:hover {
+    color: var(--red);
+}
+
+
+/* =========================
+   TAGS
+========================= */
+
+.tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 15px;
+}
+
+.tag {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 3px 10px;
+
+    border-radius: 50px;
+
+    color: white;
+
+    font-size: 11px;
+
+    line-height: 1.2;
+}
+
+.personal {
+    background: #ce695b;
+}
+
+.work {
+    background: #809f63;
+}
+
+.priority {
+    background: #6486b0;
+}
+
+
+/* =========================
+   ADD TASK BUTTON
+========================= */
+
+.column-footer {
+    margin-top: 12px;
+}
+
+.column-footer.hidden {
+    display: none;
+}
+
+.add-column-task {
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: var(--blue);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.add-column-task:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    min-height: 275px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 100px;
+
+    padding: 40px 24px;
+
+    background: var(--footer);
+
+    color: var(--blue);
+}
+
+footer p {
+    margin: 0;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-box {
+    width: 100%;
+
+    max-width: 420px;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    background: var(--cream);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.2);
+
+    animation: modalIn 0.25s ease;
+}
+
+.modal-box h2 {
+    margin: 0 0 20px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 30px;
+}
+
+.modal-box label {
+    display: block;
+
+    margin: 13px 0 5px;
+
+    color: #5a5248;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+.modal-box input,
+.modal-box select {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #e0dcd5;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 2px rgba(45, 83, 102, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+
+    z-index: 200;
+
+    left: 50%;
+
+    bottom: 25px;
+
+    transform:
+        translate(-50%, 15px);
+
+    padding: 10px 22px;
+
+    border-radius: 50px;
+
+    background: #3a3a3a;
+
+    color: white;
+
+    font-size: 14px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.95)
+            translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1099px) {
+
+    .board-section {
+        padding: 40px 20px;
+    }
+
+    .columns {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+    }
+
+    .actions {
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .actions .btn {
+        flex: 1;
+    }
+
+    .column {
+        min-height: 250px;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .hero {
+        min-height: 350px;
+    }
+
+    .hero-content {
+        padding: 12px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        margin-top: 20px;
+
+        font-size: 20px;
+    }
+
+    .board-section {
+        padding: 30px 16px;
+    }
+
+    .tabs {
+        width: 100%;
+    }
+
+    .controls {
+        gap: 15px;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+    }
+
+    .actions .btn {
+        flex: 1;
+        min-width: 90px;
+        padding: 10px 12px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 30px;
+        padding: 35px 20px;
+    }
+
+    .modal-box {
+        padding: 20px;
+    }
+}
+
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

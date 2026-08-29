@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Board</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1>DAILY BOARD</h1>
+
+            <p>plan your life productively</p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN BOARD
+    ========================== -->
+    <main class="board-section">
+
+        <!-- Controls -->
+        <div class="controls">
+
+            <!-- View Tabs -->
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    data-view="board"
+                    type="button"
+                >
+                    Board
+                </button>
+
+                <button
+                    class="tab"
+                    data-view="category"
+                    type="button"
+                >
+                    Category
+                </button>
+
+                <button
+                    class="tab"
+                    data-view="priority"
+                    type="button"
+                >
+                    Priority
+                </button>
+
+            </div>
+
+
+            <!-- Action Buttons -->
+            <div class="actions">
+
+                <button
+                    class="btn primary"
+                    id="newTaskBtn"
+                    type="button"
+                >
+                    + NEW TASK
+                </button>
+
+                <button
+                    class="btn primary"
+                    id="refreshBtn"
+                    type="button"
+                >
+                    REFRESH
+                </button>
+
+                <button
+                    class="btn danger"
+                    id="resetBtn"
+                    type="button"
+                >
+                    RESET
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             RESET CONFIRMATION
+        ========================== -->
+        <div
+            id="resetConfirm"
+            class="reset-confirm hidden"
+        >
+
+            <span>Clear all tasks?</span>
+
+            <button
+                class="yes"
+                type="button"
+            >
+                Yes, Reset
+            </button>
+
+            <button
+                class="cancel"
+                type="button"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             TASK COLUMNS
+        ========================== -->
+        <div
+            id="columns"
+            class="columns"
+        ></div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
+
+        <p>
+            Small steps.<br>
+            Steady progress.<br>
+            One task at a time.
+        </p>
+
+        <p>
+            Add what needs doing.<br>
+            Move tasks as work begins.<br>
+            Refresh tomorrow or reset anytime.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         NEW TASK MODAL
+    ========================== -->
+    <div
+        id="modal"
+        class="modal hidden"
+    >
+
+        <div class="modal-box">
+
+            <h2>NEW TASK</h2>
+
+
+            <form id="taskForm">
+
+                <!-- Task Title -->
+                <label for="taskTitle">
+                    Title
+                </label>
+
+                <input
+                    id="taskTitle"
+                    type="text"
+                    maxlength="120"
+                    placeholder="Enter task title"
+                    required
+                >
+
+
+                <!-- Category -->
+                <label for="taskCategory">
+                    Category
+                </label>
+
+                <select id="taskCategory">
+
+                    <option value="Personal">
+                        Personal
+                    </option>
+
+                    <option value="Work">
+                        Work
+                    </option>
+
+                </select>
+
+
+                <!-- Priority -->
+                <label for="taskPriority">
+                    Priority
+                </label>
+
+                <select id="taskPriority">
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                </select>
+
+
+                <!-- Modal Buttons -->
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn danger"
+                        id="cancelBtn"
+                    >
+                        CANCEL
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn primary"
+                    >
+                        ADD TASK
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST MESSAGE
+    ========================== -->
+    <div
+        id="toast"
+        class="toast"
+        aria-live="polite"
+    ></div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>
